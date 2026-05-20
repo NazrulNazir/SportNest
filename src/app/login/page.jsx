@@ -14,23 +14,25 @@ const LogInPage = () => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const userData = Object.fromEntries(formData.entries());
-        // console.log('Login User Data..', userData);
+        console.log('Login User Data..', userData);
 
-        // const { data, error } = await authClient.signIn.email({
-        //     email: userData.email,
-        //     password: userData.password,
-        //     rememberMe: true,
-        //     callbackURL: "/",
-        // });
+        const { data, error } = await authClient.signIn.email({
+            email: userData.email,
+            password: userData.password,
+            rememberMe: true,
+            callbackURL: "/",
+        });
 
-        // console.log('get form data', {data, error});
+        console.log('get form data', {data, error});
 
-        // if (data) {
-        //     // toast.success("Signin Sussessfully..");
-        // }
-        // if (error) {
-        //     // toast.error(error.message);
-        // }
+        if (data) {
+            alert('Login successfully..')
+            // toast.success("Signin Sussessfully..");
+        }
+        if (error) {
+            // toast.error(error.message);
+            alert(error.message);
+        }
 
     }
 

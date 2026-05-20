@@ -1,6 +1,6 @@
 'use client';
 // import SigninGoogle from '@/components/SigninGoogle';
-// import { authClient } from '@/lib/auth-client';
+import { authClient } from '@/lib/auth-client';
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
@@ -15,7 +15,7 @@ const RegisterPage = () => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const userData = Object.fromEntries(formData.entries());
-        // console.log("Form Data:", userData);
+        console.log("Form Data:", userData);
 
         // password condition
         const password = userData.password;
@@ -38,11 +38,12 @@ const RegisterPage = () => {
         });
         // console.log('Signup Failed:', { data, error });
         if (data) {
+            alert("Create account Successfullly")
             router.push("/login");
         }
 
         if (error) {
-            // alert('Signup Failed: ' + error.message);
+            alert('Signup Failed: ' + error.message);
             // toast.error('Signup Failed: ' + error.message)
         }
         else if (data) {

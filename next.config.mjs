@@ -7,6 +7,14 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn.pixabay.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.daisyui.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.shutterstock.com',
+      },
     ],
   },
   reactCompiler: true,
