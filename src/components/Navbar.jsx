@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { signOut, useSession } from "@/lib/auth-client";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { MdOutlineSportsSoccer } from "react-icons/md";
 
 const Navbar = () => {
 
@@ -76,8 +77,8 @@ const Navbar = () => {
 
           {/* Logo */}
           <Link href="/">
-            <h1 className="text-2xl font-bold">
-              Sport<span className="text-green-400">Nest</span>
+            <h1 className="text-2xl font-bold flex items-center gap-1">
+            <span className="text-green-400"><MdOutlineSportsSoccer /> </span> Sport<span className="text-green-400">Nest</span>
             </h1>
           </Link>
         </div>
@@ -142,9 +143,9 @@ const Navbar = () => {
               </div>
 
               {/* Logout */}
-              <Dropdown>
+              <Dropdown className="">
                 <Button aria-label="Menu" variant="secondary">
-                  Actions
+                  {user.email}
                 </Button>
                 <Dropdown.Popover>
                   <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
@@ -152,10 +153,10 @@ const Navbar = () => {
                       <Link href={'/mybookings'}>My Bookings</Link>
                     </Dropdown.Item>
                     <Dropdown.Item id="copy-link" textValue="Copy link">
-                      <Label>Copy link</Label>
+                      <Link href={'/addfacility'}>Add Facility</Link>
                     </Dropdown.Item>
                     <Dropdown.Item id="edit-file" textValue="Edit file">
-                      <Label>Edit file</Label>
+                      <Link href={'managemyfacilities'}>Manage My Facilities</Link>
                     </Dropdown.Item>
                     <Dropdown.Item id="delete-file" textValue="Delete file" variant="danger">
                       <button
