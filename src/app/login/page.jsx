@@ -2,6 +2,7 @@
 
 // import SigninGoogle from '@/components/SigninGoogle';
 import { authClient } from '@/lib/auth-client';
+import { Button } from '@heroui/react';
 import Link from 'next/link'
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -37,16 +38,16 @@ const LogInPage = () => {
     }
 
     return (
-        <div className='flex justify-center items-cente'>
-            <div className="hero bg-green-400">
-                <div className="card bg-base-100 w-full max-w-sm shadow-2xl">
-                    <div className="card-body px-8">
+        <div className='h-[80vh] flex justify-center items-center'>
+            <div className="hero">
+                <div className="card bg-base-100 shadow-2xl">
+                    <div className="card-body">
                         <form onSubmit={onSubmit}>
-                            <h1 className='text-4xl font-bold text-center text-primary mb-5'>Login</h1>
+                            <h1 className='text-4xl font-bold text-center text-primary mb-5 text-green-600'>Login</h1>
                             <div className='w-full'>
                                 {/* <SigninGoogle></SigninGoogle> */}
                             </div>
-                            <fieldset className="fieldset">
+                            <fieldset className="fieldset w-87.5">
                                 <label className="label">Email</label>
                                 <input type="email" name='email' className="input w-full" placeholder="Enter your email" />
                                 <div>
@@ -68,8 +69,8 @@ const LogInPage = () => {
                                     </div>
                                 </div>
                                 <div><a className="link link-hover">Forgot password?</a></div>
-                                <button className="btn btn-primary mt-4" type='submit'>Login</button>
-                                <p> Don’t have an account? <Link className='text-primary font-bold underline' href={'/register'}>Register</Link></p>
+                                <Button className="btn btn-primary mt-4 w-full bg-green-500 text-gray-800 text-lg font-bold" type='submit'>Login</Button>
+                                <p> Don’t have an account? <Link className='text-primary font-bold underline text-green-700' href={'/register'}>Register</Link></p>
                             </fieldset>
                         </form>
                     </div>

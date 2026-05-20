@@ -31,7 +31,7 @@ const Navbar = () => {
       <li key={item.label}>
         <Link href={item.href}>
           <motion.div
-            className={`relative px-3 py-1 cursor-pointer transition ${isActive ? "text-blue-400" : "text-white"
+            className={`relative px-3 py-1 cursor-pointer transition ${isActive ? "text-green-400" : "text-white"
               }`}
             whileHover={{ y: -2 }}
           >
@@ -45,7 +45,7 @@ const Navbar = () => {
                   stiffness: 300,
                   damping: 30,
                 }}
-                className="absolute left-0 right-0 -bottom-1 h-0.5 bg-blue-500"
+                className="absolute left-0 right-0 -bottom-1 h-0.5 bg-green-400"
               />
             )}
           </motion.div>
