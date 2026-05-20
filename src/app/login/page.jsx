@@ -69,7 +69,7 @@ const LogInPage = () => {
                                     </div>
                                 </div>
                                 <div><a className="link link-hover">Forgot password?</a></div>
-                                <Button className="btn btn-primary mt-4 w-full bg-green-500 text-gray-800 text-lg font-bold" type='submit'>Login</Button>
+                                <Button className="btn btn-primary mt-4 w-full bg-green-500 text-gray-800 text-lg font-semibold" type='submit'>Login</Button>
                                 <p> Don’t have an account? <Link className='text-primary font-bold underline text-green-700' href={'/register'}>Register</Link></p>
                             </fieldset>
                         </form>

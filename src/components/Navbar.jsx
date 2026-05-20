@@ -1,5 +1,7 @@
 'use client'
 
+import { Button, Dropdown, Label } from "@heroui/react";
+
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -16,46 +18,26 @@ const Navbar = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const tabs = [
+  // Public Routes
+  const publicTabs = [
     { label: "Home", href: "/" },
     { label: "All Facilities", href: "/allfacilities" },
+  ];
+
+  // Private Routes
+  const privateTabs = [
     { label: "My Bookings", href: "/mybookings" },
     { label: "Add Facility", href: "/addfacility" },
     { label: "Manage My Facilities", href: "/managemyfacilities" },
   ];
 
-  const items = tabs.map((item) => {
-    const isActive = pathname === item.href;
-
-    return (
-      <li key={item.label}>
-        <Link href={item.href}>
-          <motion.div
-            className={`relative px-3 py-1 cursor-pointer transition ${isActive ? "text-green-400" : "text-white"
-              }`}
-            whileHover={{ y: -2 }}
-          >
-            {item.label}
-
-            {isActive && (
-              <motion.div
-                layoutId="underline"
-                transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 30,
-                }}
-                className="absolute left-0 right-0 -bottom-1 h-0.5 bg-green-400"
-              />
-            )}
-          </motion.div>
-        </Link>
-      </li>
-    );
-  });
+  // Final Tabs
+  const tabs = user
+    ? [...publicTabs, ...privateTabs]
+    : publicTabs;
 
   return (
-    <nav className="sticky top-0 z-40 w-full border-b border-separator bg-[#0B1120]/80 backdrop-blur-xl">
+    <nav className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#0B1120]/80 backdrop-blur-xl">
 
       <header className="flex h-16 items-center justify-between max-w-7xl mx-auto px-4 text-white">
 
@@ -64,12 +46,10 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden"
+            className="lg:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            <span className="sr-only">Menu</span>
-
             <svg
               className="h-6 w-6"
               fill="none"
@@ -95,63 +75,119 @@ const Navbar = () => {
           </button>
 
           {/* Logo */}
-          <div className="text-2xl font-bold">
-            Sport<span className="text-green-400">Nest</span>
-          </div>
+          <Link href="/">
+            <h1 className="text-2xl font-bold">
+              Sport<span className="text-green-400">Nest</span>
+            </h1>
+          </Link>
         </div>
 
-        {/* Middle */}
+        {/* Desktop Menu */}
         <div className="hidden lg:flex items-center">
           <ul className="flex items-center gap-2 text-lg">
-            {items}
+
+            {tabs.map((item) => {
+
+              const isActive = pathname === item.href;
+
+              return (
+                <li key={item.href}>
+                  <Link href={item.href}>
+                    <motion.div
+                      whileHover={{ y: -2 }}
+                      className={`relative px-3 py-1 transition cursor-pointer ${isActive
+                        ? "text-green-400"
+                        : "text-white"
+                        }`}
+                    >
+                      {item.label}
+
+                      {isActive && (
+                        <motion.div
+                          layoutId="underline"
+                          transition={{
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 30,
+                          }}
+                          className="absolute left-0 right-0 -bottom-1 h-0.5 bg-green-400"
+                        />
+                      )}
+                    </motion.div>
+                  </Link>
+                </li>
+              );
+            })}
+
           </ul>
         </div>
 
         {/* Right Side */}
-        <div className="navbar-end gap-3">
+        <div className="flex items-center gap-3">
 
           {user ? (
-            <div className='flex gap-3 items-center'>
-
-              <div className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full overflow-hidden">
-                  <Image
-                    width={40}
-                    height={40}
-                    alt='user'
-                    className="object-cover"
-                    src={
-                      user.image ||
-                      'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'
-                    }
-                  />
-                </div>
+            <>
+              {/* User Image */}
+              <div className="w-10 h-10 rounded-full overflow-hidden border border-white/20">
+                <Image
+                  width={40}
+                  height={40}
+                  alt="user"
+                  className="w-full h-full object-cover"
+                  src={
+                    user.image ||
+                    "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  }
+                />
               </div>
 
-              <button
-                onClick={() => {
-                  signOut();
-                  alert("log out successfully");
-                }}
-                className="btn btn-primary btn-sm md:btn-md"
-              >
-                Logout
-              </button>
-            </div>
+              {/* Logout */}
+              <Dropdown>
+                <Button aria-label="Menu" variant="secondary">
+                  Actions
+                </Button>
+                <Dropdown.Popover>
+                  <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
+                    <Dropdown.Item id="new-file" textValue="New file">
+                      <Link href={'/mybookings'}>My Bookings</Link>
+                    </Dropdown.Item>
+                    <Dropdown.Item id="copy-link" textValue="Copy link">
+                      <Label>Copy link</Label>
+                    </Dropdown.Item>
+                    <Dropdown.Item id="edit-file" textValue="Edit file">
+                      <Label>Edit file</Label>
+                    </Dropdown.Item>
+                    <Dropdown.Item id="delete-file" textValue="Delete file" variant="danger">
+                      <button
+                        onClick={() => {
+                          signOut();
+                          alert("log out successfully");
+                        }}
+                        className="btn btn-primary btn-sm md:btn-md text-red-600"
+                      >
+                        Logout
+                      </button>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown.Popover>
+              </Dropdown>
+            </>
           ) : (
             <Link
-              className='btn btn-primary btn-sm md:btn-md'
-              href={'/login'}
+              href="/login"
+              className="px-4 py-2 rounded-lg bg-green-500 hover:bg-green-600 transition text-white text-sm md:text-base"
             >
               Login
             </Link>
           )}
+
         </div>
       </header>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="border-t border-separator md:hidden bg-[#0B1120]">
+        <div className="lg:hidden border-t border-white/10 bg-[#0B1120]">
+
           <ul className="flex flex-col gap-2 p-4">
 
             {tabs.map((item) => {
@@ -159,13 +195,13 @@ const Navbar = () => {
               const isActive = pathname === item.href;
 
               return (
-                <li key={item.label}>
+                <li key={item.href}>
                   <Link
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
                     className={`block py-2 px-3 rounded-lg transition ${isActive
-                        ? "bg-blue-500/20 text-blue-400"
-                        : "text-white hover:bg-white/10"
+                      ? "bg-green-500/20 text-green-400"
+                      : "text-white hover:bg-white/10"
                       }`}
                   >
                     {item.label}
@@ -178,7 +214,7 @@ const Navbar = () => {
         </div>
       )}
     </nav>
-  )
-}
+  );
+};
 
 export default Navbar;

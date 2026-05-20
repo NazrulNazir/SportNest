@@ -93,7 +93,7 @@ const RegisterPage = () => {
                                 </div>
 
                                 <div><a className="link link-hover">Forgot password?</a></div>
-                                <Button type='submit' className="btn bg-green-400 rounded-lg w-full text-gray-800 mt-4">Register</Button>
+                                <Button type='submit' className="btn bg-green-400 rounded-lg w-full text-gray-800 mt-4 text-lg font-semibold">Register</Button>
                                 <p className='text-md'>have an account? <Link className='text-green-700 font-bold underline' href={'/login'}>Login</Link></p>
                             </fieldset>
                         </form>
