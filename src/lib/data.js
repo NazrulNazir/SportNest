@@ -46,10 +46,6 @@ export const bookingCancel = async (userId) => {
         }
     });
 
-    if (!res.ok) {
-        throw new Error("Failed to fetch bookings");
-    }
-
     const data = await res.json();
     if(data.deletedCount > 0) {
         revalidatePath('/mybookings')

@@ -1,9 +1,65 @@
+import DeleteBooking from '@/components/DeleteBooking'
+import { auth } from '@/lib/auth'
+import { getMybooking } from '@/lib/data'
+import { Button } from '@heroui/react'
+import { headers } from 'next/headers'
+import Image from 'next/image'
 import React from 'react'
+import { FaRegClock } from 'react-icons/fa'
+import { GrEdit } from 'react-icons/gr'
+import { MdDateRange } from 'react-icons/md'
 
-const ManageMyFacilities = () => {
+const ManageMyFacilities = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers()
+  });
+
+  const user = session?.user;
+
+  const bookings = await getMybooking(user?.id);
+
+  console.log(bookings)
+  // if (!user?.id) {
+  //   return <BookingEmpty />
+  // }
   return (
-    <div>
-      Manage my facilities
+    <div className='mx-auto px-5 sm:px-0 mt-10 max-w-5xl'>
+      <h1 className='text-2xl font-bold text-gray-800'>My Bookings</h1>
+      <div className='flex flex-col gap-4 mt-10'>
+        {
+          bookings.map(booking => (<div key={booking._id}>
+            <div className='bg-gray-100 rounded-xl py-3 px-4 flex flex-col sm:flex-row justify-between sm:items-center gap-5'>
+
+              <div className='flex gap-5'>
+                <Image width={200} height={120} className='rounded-lg' src={booking.imageUrl} alt='hello'></Image>
+                <div>
+                  <div className='sm:flex items-center gap-5 mb-4'>
+                    <h2 className='text-lg font-bold text-gray-800 mb-5 sm:-0'>{booking.facilityName}</h2>
+                    <span className='bg-yellow-50 px-4 py-1.5 rounded-full font-semibold text-yellow-500'>pending</span>
+                  </div>
+                  <div className='flex flex-col sm:flex-row gap-2 sm:gap-4 sm:mt-3'>
+                    {/* booking data, timeslot, price */}
+                    <p className='text-gray-600 font-semibold flex gap-1 items-center'>
+                      <span className='text-green-500'><MdDateRange /></span>
+                      {booking.facilityDate}
+                    </p>
+                    <p className='text-gray-600 font-semibold flex gap-1 items-center'>
+                      <span className='text-green-500'><FaRegClock /></span>
+                      {booking.timeSlot}</p>
+                    <p className='font-semibold text-gray-600'>${booking.price}</p>
+
+                  </div>
+                </div>
+              </div>
+              <div className='flex flex-col gap-5'>
+                <Button variant="secondary" className={'bg-none px-5'}><GrEdit/> Edit</Button>
+                <DeleteBooking booking={booking} />
+              </div>
+            </div>
+
+          </div>))
+        }
+      </div>
     </div>
   )
 }

@@ -1,18 +1,19 @@
 "use client";
 import {AlertDialog, Button} from "@heroui/react";
+import { FaRegTrashAlt } from "react-icons/fa";
 
-const CancelBokking = () => {
+const DeleteBooking = () => {
     return (
         <div>
             <AlertDialog>
-                <Button variant="secondary" className={'text-red-500'}>Cancel Booking</Button>
+                <Button variant="secondary" className={'text-red-500'}> <span className="text-[6px]"><FaRegTrashAlt /></span> Delete</Button>
                 <AlertDialog.Backdrop>
                     <AlertDialog.Container>
                         <AlertDialog.Dialog className="sm:max-w-100">
                             <AlertDialog.CloseTrigger />
                             <AlertDialog.Header>
                                 <AlertDialog.Icon status="danger" />
-                                <AlertDialog.Heading>Cancel Booking permanently?</AlertDialog.Heading>
+                                <AlertDialog.Heading>Delete Booking permanently?</AlertDialog.Heading>
                             </AlertDialog.Header>
                             <AlertDialog.Body>
                                 <p>
@@ -25,7 +26,7 @@ const CancelBokking = () => {
                                     Cancel
                                 </Button>
                                 <Button slot="close" variant="danger">
-                                    Cancel Booking
+                                    Delete Booking
                                 </Button>
                             </AlertDialog.Footer>
                         </AlertDialog.Dialog>
@@ -36,4 +37,4 @@ const CancelBokking = () => {
     )
 }
 
-export default CancelBokking
+export default DeleteBooking
