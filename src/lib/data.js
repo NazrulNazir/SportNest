@@ -9,3 +9,10 @@ export const getAllFacilities = async ()=> {
         const data = await res.json();
         return data;
 }
+
+// Details Page
+export const allFacilitiesDetails = async (id)=> {
+        const res = await fetch(`http://localhost:8000/allfacilities/${id}`);
+        const data = await res.json();
+        return data;
+}
