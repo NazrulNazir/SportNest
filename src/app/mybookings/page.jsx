@@ -1,11 +1,10 @@
 import BookingEmpty from '@/components/BookingEmpty';
+import Cancel from '@/components/Cancel';
 import { auth } from '@/lib/auth';
-// import { useSession } from '@/lib/auth-client';
-import { getMybooking } from '@/lib/data';
+import { bookingCancel, getMybooking } from '@/lib/data';
 import { Button } from '@heroui/react';
 import { headers } from 'next/headers';
 import Image from 'next/image';
-import Link from 'next/link'
 import React from 'react'
 import { FaRegClock } from 'react-icons/fa';
 import { MdDateRange } from 'react-icons/md';
@@ -20,6 +19,8 @@ const MyBookingsPage = async () => {
   // console.log('user id .......',user?.id);
 
   const bookings = await getMybooking(user?.id);
+
+
   // const bookings = []
   console.log(bookings)
   if (!user?.id) {
@@ -55,8 +56,7 @@ const MyBookingsPage = async () => {
                 </div>
               </div>
 
-                <Button className={'text-lg font-semibold text-red-500 bg-gray-200 w-full sm:w-25'}>Cancel</Button>
-              
+              <Cancel booking  = {booking}></Cancel>
             </div>
 
           </div>))
