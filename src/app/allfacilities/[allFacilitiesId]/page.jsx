@@ -5,7 +5,7 @@ import { Button } from '@heroui/react';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { LuMapPin } from 'react-icons/lu';
-import { useParams } from 'next/navigation';
+import { redirect, useParams } from 'next/navigation';
 import { useSession } from '@/lib/auth-client';
 
 const AllFacilitiesDetails = () => {
@@ -66,8 +66,10 @@ const AllFacilitiesDetails = () => {
             },
             body: JSON.stringify(bookingData)
         });
-        const data = res.json();
-        console.log(data);
+        const data = await res.json();
+        if(data.insertedId){
+            redirect('/mybookings');
+        }
         return data;
     }
 

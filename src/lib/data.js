@@ -16,3 +16,18 @@ export const allFacilitiesDetails = async (id)=> {
         const data = await res.json();
         return data;
 }
+
+// my booking
+export const getMybooking = async (id) => {
+
+    const res = await fetch(`http://localhost:8000/booking/${id}`, {
+        cache: "no-store"
+    });
+
+    if (!res.ok) {
+        throw new Error("Failed to fetch bookings");
+    }
+
+    const data = await res.json();
+    return data;
+}
