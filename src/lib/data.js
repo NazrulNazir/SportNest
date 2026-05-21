@@ -52,3 +52,21 @@ export const bookingCancel = async (userId) => {
     }
     return data;
 }
+
+
+
+// Booking Delete
+export const bookingDElete = async (bookingID) => {
+    const res = await fetch(`http://localhost:8000/booking/${bookingID}`, {
+        method: 'DELETE',
+        headers: {
+            'content-type' : 'application/json',
+        }
+    });
+
+    const data = await res.json();
+    if(data.deletedCount > 0) {
+        revalidatePath('/managemyfacilities')
+    }
+    return data;
+}

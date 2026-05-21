@@ -24,7 +24,7 @@ const ManageMyFacilities = async () => {
   // }
   return (
     <div className='mx-auto px-5 sm:px-0 mt-10 max-w-5xl'>
-      <h1 className='text-2xl font-bold text-gray-800'>My Bookings</h1>
+      <h1 className='text-2xl font-bold text-gray-800'>Manage my facilities</h1>
       <div className='flex flex-col gap-4 mt-10'>
         {
           bookings.map(booking => (<div key={booking._id}>
@@ -52,8 +52,8 @@ const ManageMyFacilities = async () => {
                 </div>
               </div>
               <div className='flex flex-col gap-5'>
-                <Button variant="secondary" className={'bg-none px-5'}><GrEdit/> Edit</Button>
-                <DeleteBooking booking={booking} />
+                <Button variant="secondary" className={'bg-none px-5'}><GrEdit/> <span className="text-[16px]">Edit</span></Button>
+                <DeleteBooking bookingID ={booking._id} />
               </div>
             </div>
 

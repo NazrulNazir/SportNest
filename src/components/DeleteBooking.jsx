@@ -1,12 +1,16 @@
 "use client";
+import { bookingDElete } from "@/lib/data";
 import {AlertDialog, Button} from "@heroui/react";
 import { FaRegTrashAlt } from "react-icons/fa";
 
-const DeleteBooking = () => {
+const DeleteBooking = ({bookingID}) => {
+    const onDelete = async (bookingID)=> {
+        await bookingDElete(bookingID)
+    }
     return (
         <div>
             <AlertDialog>
-                <Button variant="secondary" className={'text-red-500'}> <span className="text-[6px]"><FaRegTrashAlt /></span> Delete</Button>
+                <Button variant="secondary" className={'text-red-500'}><FaRegTrashAlt /> <span className="text-[16px]">Delete</span></Button>
                 <AlertDialog.Backdrop>
                     <AlertDialog.Container>
                         <AlertDialog.Dialog className="sm:max-w-100">
@@ -25,7 +29,7 @@ const DeleteBooking = () => {
                                 <Button slot="close" variant="tertiary">
                                     Cancel
                                 </Button>
-                                <Button slot="close" variant="danger">
+                                <Button onClick={()=> onDelete(bookingID)} slot="close" variant="danger">
                                     Delete Booking
                                 </Button>
                             </AlertDialog.Footer>
