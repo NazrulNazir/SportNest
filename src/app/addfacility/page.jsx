@@ -8,7 +8,7 @@ import { useState } from 'react';
 const AddFacilityPage = () => {
     const { data } = useSession();
     const ownerEmail = data?.user.email;
-    const [email, setEmail] = useState(ownerEmail)
+    const [email, setEmail] = useState(ownerEmail);
 
     const onSubmit = (e) => {
         e.preventDefault();

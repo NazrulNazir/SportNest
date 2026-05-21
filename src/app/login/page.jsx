@@ -1,5 +1,6 @@
 'use client';
 
+import SigninGoogle from '@/components/SigninGoogle';
 // import SigninGoogle from '@/components/SigninGoogle';
 import { authClient } from '@/lib/auth-client';
 import { Button } from '@heroui/react';
@@ -45,7 +46,7 @@ const LogInPage = () => {
                         <form onSubmit={onSubmit}>
                             <h1 className='text-4xl font-bold text-center text-primary mb-5 text-green-600'>Login</h1>
                             <div className='w-full'>
-                                {/* <SigninGoogle></SigninGoogle> */}
+                                <SigninGoogle></SigninGoogle>
                             </div>
                             <fieldset className="fieldset w-87.5">
                                 <label className="label">Email</label>

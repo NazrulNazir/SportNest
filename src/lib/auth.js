@@ -21,14 +21,20 @@ const client = new MongoClient(process.env.SPORTNEST_URI);
 const db = client.db('SportNest');
 
 export const auth = betterAuth({
+    // account: {
+    //       trustedProviders: {
+    //         enabled: true,
+    //         trustedProviders: ["google", "github"], // Add trusted providers
+    //     },
+    // },
     emailAndPassword: {
         enabled: true,
     },
-     socialProviders: {
-        google: { 
-            clientId: process.env.GOOGLE_CLIENT_ID, 
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET, 
-        }, 
+    socialProviders: {
+        google: {
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        },
     },
     user: {
         changeEmail: {
