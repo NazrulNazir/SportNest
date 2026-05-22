@@ -9,9 +9,11 @@ import { signOut, useSession } from "@/lib/auth-client";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { MdOutlineSportsSoccer } from "react-icons/md";
+import { useRouter } from 'next/navigation';
+import { FaCheck } from "react-icons/fa";
 
 const Navbar = () => {
-
+  const router = useRouter();
   const { data } = useSession();
   const user = data?.user;
 
@@ -37,6 +39,24 @@ const Navbar = () => {
     ? [...publicTabs, ...privateTabs]
     : publicTabs;
 
+  // sign out
+
+  const [selected, setSelected] = useState('');
+
+  const handleChange = async (e) => {
+    const value = e.target.value;
+
+    setSelected(value);
+
+    if (value === 'logout') {
+      await signOut();
+      alert('Log out successfully');
+      router.push('/');
+      return;
+    }
+
+    router.push(value);
+  }
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#0B1120]/80 backdrop-blur-xl">
 
@@ -78,7 +98,10 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/">
             <h1 className="text-2xl font-bold flex items-center gap-1">
-            <span className="text-green-400"><MdOutlineSportsSoccer /> </span> Sport<span className="text-green-400">Nest</span>
+              <span className="text-green-400">
+                <MdOutlineSportsSoccer />
+              </span> Sport<span
+                className="text-green-400">Nest</span>
             </h1>
           </Link>
         </div>
@@ -143,35 +166,39 @@ const Navbar = () => {
               </div>
 
               {/* Logout */}
-              <Dropdown className="">
-                <Button aria-label="Menu" variant="secondary">
-                  {user.email}
-                </Button>
-                <Dropdown.Popover>
-                  <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
-                    <Dropdown.Item id="new-file" textValue="New file">
-                      <Link href={'/mybookings'}>My Bookings</Link>
-                    </Dropdown.Item>
-                    <Dropdown.Item id="copy-link" textValue="Copy link">
-                      <Link href={'/addfacility'}>Add Facility</Link>
-                    </Dropdown.Item>
-                    <Dropdown.Item id="edit-file" textValue="Edit file">
-                      <Link href={'managemyfacilities'}>Manage My Facilities</Link>
-                    </Dropdown.Item>
-                    <Dropdown.Item id="delete-file" textValue="Delete file" variant="danger">
-                      <button
-                        onClick={() => {
-                          signOut();
-                          alert("log out successfully");
-                        }}
-                        className="btn btn-primary btn-sm md:btn-md text-red-600"
-                      >
-                        Logout
-                      </button>
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown.Popover>
-              </Dropdown>
+              <div className="flex items-center gap-2">
+
+                <label className="select rounded-xl text-black">
+                  <select
+                    onChange={handleChange}
+                    defaultValue=""
+                    
+                  >
+                    <option disabled value="">
+                      {user?.email}
+                    </option>
+
+                    <option value="/mybookings">
+                      My Bookings
+                    </option>
+
+                    <option value="/addfacility">
+                      Add Facility
+                    </option>
+
+                    <option value="/managemyfacilities">
+                      Manage My Facilities
+                    </option>
+
+                    <option 
+                    value="logout"
+                    className="text-red-500 text-lg font-semibold"
+                    >
+                      Logout
+                    </option>
+                  </select>
+                </label>
+              </div>
             </>
           ) : (
             <Link

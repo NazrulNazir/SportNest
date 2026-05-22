@@ -8,8 +8,9 @@ export const getFeaturedFacilities = async () => {
     return data;
 }
 
-export const getAllFacilities = async () => {
-    const res = await fetch(`http://localhost:8000/allfacilities`);
+// `http://localhost:5000/facilities?search=${searchText}&sport=${sportType}`
+export const getAllFacilities = async (searchText, sportType) => {
+    const res = await fetch(`http://localhost:8000/allfacilities?search=${searchText}&sport=${sportType}`);
     const data = await res.json();
     return data;
 }
@@ -74,3 +75,17 @@ export const bookingDElete = async (bookingID) => {
     return data;
 }
 
+export const getMybook = async (userId) => {
+    // http://localhost:8000/manageFacilities/nazrul@islam.com
+
+    const res = await fetch(`http://localhost:8000/booking/${userId}`, {
+        cache: "no-store"
+    });
+
+    if (!res.ok) {
+        throw new Error("Failed to fetch bookings");
+    }
+
+    const data = await res.json();
+    return data;
+}

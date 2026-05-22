@@ -22,7 +22,7 @@ const ManageMyFacilities = async () => {
   //   return <BookingEmpty />
   // }
   return (
-    <div className='mx-auto px-5 sm:px-0 mt-10 max-w-5xl'>
+    <div className='mx-auto px-5 sm:px-0 my-10 max-w-5xl'>
       <h1 className='text-2xl font-bold text-gray-800'>Manage my facilities</h1>
       <div className='flex flex-col gap-4 mt-10'>
         {

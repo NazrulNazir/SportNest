@@ -60,9 +60,7 @@ const EditModal = ({booking}) => {
                                                 <input defaultValue={booking.Available_Time_Slots} className='input border border-gray-200' type="text" name='Available_Time_Slots' placeholder='Available Time Slots' required />
                                             </div>
 
-                                            {/* <input defaultValue={booking.email} type="email" name='email' className="input border border-gray-200" placeholder="Owner Email" required /> */}
-
-                                            <textarea defaultValue={booking.Description} className='input border border-gray-200' name="Description" rows={6} placeholder='Description..' required></textarea>
+                                            <textarea defaultValue={booking.Description} className="w-80 h-25 resize-none border rounded-lg p-3 border-gray-200" name="Description" rows={6} placeholder='Description..' required></textarea>
                                         </fieldset>
                                         <Modal.Footer className='mt-5'>
                                             <Button slot="close" variant="secondary">

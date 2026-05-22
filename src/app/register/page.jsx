@@ -1,7 +1,8 @@
 'use client';
+import SigninGoogle from '@/components/SigninGoogle';
 // import SigninGoogle from '@/components/SigninGoogle';
 import { authClient } from '@/lib/auth-client';
-import { Button } from '@heroui/react';
+import { Button, Description, FieldError, Input, Label, TextField } from '@heroui/react';
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
@@ -20,7 +21,7 @@ const RegisterPage = () => {
 
         // password condition
         const password = userData.password;
-        const hasMinLength = password.length >= 8;
+        const hasMinLength = password.length >= 6;
 
         // console.log(errPass)
         setErrPass('');
@@ -47,10 +48,6 @@ const RegisterPage = () => {
             alert('Signup Failed: ' + error.message);
             // toast.error('Signup Failed: ' + error.message)
         }
-        else if (data) {
-            // alert('Account create successfully. Please verify your account');
-            // toast.success('Account create successfully. Please verify your account')
-        }
     }
 
     return (
@@ -60,7 +57,7 @@ const RegisterPage = () => {
                     <div className="card-body">
                         <form action="" onSubmit={onSubmit}>
                             <h1 className='text-4xl font-bold text-center text-green-600'>Register</h1>
-                            {/* <SigninGoogle></SigninGoogle> */}
+                            <SigninGoogle></SigninGoogle>
                             <fieldset className="fieldset flex flex-col gap-3 px-3">
                                 <label className="label">Name</label>
                                 <input type="text" name='name' className="input border border-gray-200" placeholder="Your Name" required />
@@ -69,23 +66,56 @@ const RegisterPage = () => {
                                 <input type="email" name='email' className="input border border-gray-200" placeholder="Your Email" required />
 
                                 <label className='label'>Photo URL</label>
-                                <input className='input border border-gray-200' type="text" name='photo_URL' placeholder='Enter Photo URL' required/>
+                                <input className='input border border-gray-200' type="text" name='photo_URL' placeholder='Enter Photo URL' required />
 
                                 <div>
                                     <label className="label mb-2">Password</label>
+
                                     <div className="relative w-full max-w-sm">
-                                        <input
-                                            onChange={() => setErrPass('')}
-                                            name='password'
+                                        <TextField
+                                            isRequired
+                                            name="password"
                                             type={showPassword ? "text" : "password"}
-                                            placeholder="Enter your password"
-                                            className="input w-full border border-gray-200"
-                                        />
-                                        <p className='text-red-600 font-semibold mt-2 text-[15px]'>{errPass}</p>
+                                            validate={(value) => {
+                                                if (value.length < 6) {
+                                                    return "Password must be at least 6 characters";
+                                                }
+
+                                                if (!/[A-Z]/.test(value)) {
+                                                    return "Password must contain at least one uppercase letter";
+                                                }
+
+                                                if (!/[a-z]/.test(value)) {
+                                                    return "Password must contain at least one lowercase letter";
+                                                }
+
+                                                return null;
+                                            }}
+                                        >
+                                            <Input
+                                                placeholder="Enter your password"
+                                                className="pr-12"
+                                            />
+
+                                            {/* <p className="text-red-600 font-semibold mt-2 text-[15px]">
+                                            {errPass}
+                                        </p> */}
+
+                                            <Description>
+                                                {
+                                                    errPass ? <p className="text-red-600 font-semibold mt-2">
+                                                        {errPass}
+                                                    </p> :
+                                                        <p>Must be at least 6 characters with 1 uppercase and 1 lowercase letter</p>
+                                                }
+                                            </Description>
+
+                                            <FieldError />
+                                        </TextField>
 
                                         <span
                                             onClick={() => setShowPassword(!showPassword)}
-                                            className="absolute right-5 text-lg top-1/2 -translate-y-1/2 cursor-pointer text-gray-500"
+                                            className="absolute right-4 top-[28%] -translate-y-1/2 cursor-pointer text-gray-500 z-10 text-lg"
                                         >
                                             {showPassword ? <FaEyeSlash /> : <FaEye />}
                                         </span>

@@ -33,7 +33,7 @@ const AddFacilityPage = () => {
         facilitiesData();
     }
     return (
-        <div className='mt-2'>
+        <div className='mt-2 mb-10'>
             <div className="hero min-h-[80vh] flex justify-center items-center">
                 <div className="card bg-base-100 w-full max-w-md shadow-2xl">
                     <div className="card-body">
@@ -61,7 +61,12 @@ const AddFacilityPage = () => {
 
                                 <input value={email || ""} onChange={(e) => setEmail(e.target.value)} type="email" name='email' className="input border border-gray-200" placeholder="Owner Email" required />
 
-                                <textarea className='input border border-gray-200' name="Description" rows={4} placeholder='Description..' required></textarea>
+                                <textarea
+                                    className="w-80 h-25 resize-none border rounded-lg p-3 border-gray-200"
+                                    name="Description" 
+                                    rows={4} placeholder='Description..'
+                                    required>
+                                </textarea>
 
 
                                 <Button type='submit' className="btn bg-green-400 rounded-lg w-full text-gray-800 mt-2 text-lg font-semibold">Add Facilities</Button>

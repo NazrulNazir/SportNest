@@ -21,7 +21,7 @@ const SigninGoogle = () => {
 
     return (
         <div className='mt-6'>
-            <button onClick={handleGoogleSignin} className='btn w-full flex justify-center items-center gap-2 text-[15px]'>
+            <button onClick={handleGoogleSignin} className='btn w-full flex justify-center items-center gap-2 text-[15px] py-7 sm:py-3'>
                 <FcGoogle />
                 Signin with Google</button>
             <div className="flex items-center gap-0 mt-4">

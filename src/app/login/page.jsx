@@ -41,16 +41,16 @@ const LogInPage = () => {
     return (
         <div className='h-[80vh] flex justify-center items-center'>
             <div className="hero">
-                <div className="card bg-base-100 shadow-2xl">
+                <div className="card bg-base-100 sm:shadow-2xl">
                     <div className="card-body">
                         <form onSubmit={onSubmit}>
-                            <h1 className='text-4xl font-bold text-center text-primary mb-5 text-green-600'>Login</h1>
+                            <h1 className='text-4xl font-bold text-center mb-5 text-green-600'>Login</h1>
                             <div className='w-full'>
                                 <SigninGoogle></SigninGoogle>
                             </div>
                             <fieldset className="fieldset w-87.5">
                                 <label className="label">Email</label>
-                                <input type="email" name='email' className="input w-full" placeholder="Enter your email" />
+                                <input type="email" name='email' className="input py-7 sm:py-3 w-full" placeholder="Enter your email" />
                                 <div>
                                     <label className="label mb-2">Password</label>
                                     <div className="relative w-full max-w-sm">
@@ -58,7 +58,7 @@ const LogInPage = () => {
                                             name='password'
                                             type={showPassword ? "text" : "password"}
                                             placeholder="Enter your password"
-                                            className="input w-full"
+                                            className="input w-full py-7 sm:py-3"
                                         />
 
                                         <span
@@ -70,8 +70,8 @@ const LogInPage = () => {
                                     </div>
                                 </div>
                                 <div><a className="link link-hover">Forgot password?</a></div>
-                                <Button className="btn btn-primary mt-4 w-full bg-green-500 text-gray-800 text-lg font-semibold" type='submit'>Login</Button>
-                                <p> Don’t have an account? <Link className='text-primary font-bold underline text-green-700' href={'/register'}>Register</Link></p>
+                                <Button className="btn  mt-4 w-full bg-green-500 text-gray-800 text-lg font-semibold py-7 sm:py-3" type='submit'>Login</Button>
+                                <p> Don’t have an account? <Link className=' font-bold underline text-green-700' href={'/register'}>Register</Link></p>
                             </fieldset>
                         </form>
                     </div>
