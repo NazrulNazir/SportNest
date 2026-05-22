@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+SportNest - Sports Facility Booking Management System
+🏆 Project Overview
 
-## Getting Started
+SportNest is a full-stack sports facility booking platform built with the MERN Stack and Next.js.
+Users can explore different sports facilities such as tennis courts, football turfs, badminton courts, and swimming pools, then book available slots online easily.
 
-First, run the development server:
+The platform provides a modern and responsive user experience with secure authentication, facility management, and booking management features.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🌐 Live Website
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🚀 Project Link: https://your-live-link.vercel.app
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+✨ Main Features
+🔐 Authentication System (Email/Password + Google Login)
+🏟 Browse All Sports Facilities
+📅 Book Facilities by Date & Time
+➕ Add New Facility
+🛠 Manage Own Facilities
+❌ Cancel Bookings
+🔎 Search Facilities by Name
+🎯 Filter Facilities by Sport Type
+🔄 Real-time UI Update with Revalidation
+🍪 JWT Authentication with HTTPOnly Cookies
+📱 Fully Responsive Design
+🎞 Framer Motion Animation
+🚫 Custom 404 Page
+⏳ Loading Spinner
+🔔 Toast Notifications using React Hot Toast
+🧰 Technologies Used
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+**Frontend
+Next.js
+React.js
+Tailwind CSS
+Hero UI
+Framer Motion
+React Hot Toast
+React Icons
+Next Auth / Better Auth
 
-To learn more about Next.js, take a look at the following resources:
+**Backend
+Node.js
+Express.js
+MongoDB
+JWT
+Cookie Parser
+CORS
+Dotenv
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📦 NPM Packages Used
+Client Side
+next
+react
+react-dom
+tailwindcss
+@heroui/react
+react-hot-toast
+react-icons
+framer-motion
+next-auth
+axios
+Server Side
+express
+mongodb
+cors
+dotenv
+jsonwebtoken
+cookie-parser
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🔐 Authentication Features
+User Registration
+User Login
+Google Authentication
+JWT Token Generation
+HTTPOnly Cookie Storage
+Protected Private Routes
+Middleware Route Protection
 
-## Deploy on Vercel
+🏟 Facility Features
+Add New Facility
+Update Facility
+Delete Facility
+View Facility Details
+Dynamic Featured Facilities Section
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+📅 Booking Features
+Book Sports Facilities
+View My Bookings
+Cancel Booking
+Booking Status Management
+📱 Responsive Design
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The website is fully responsive for:
+
+Mobile Devices
+Tablets
+Desktop Screens
+🗄 Database Collections
+Facilities Collection
+facility_name
+facility_type
+image
+location
+price_per_hour
+capacity
+available_slots
+description
+owner_email
+booking_count
+Bookings Collection
+facility_id
+user_email
+booking_date
+time_slot
+hours
+total_price
+status
+
+
+🚀 Installation & Setup
+Clone Client Repository
+git clone https://github.com/your-username/client-side-repo.git
+Clone Server Repository
+git clone https://github.com/your-username/server-side-repo.git
+Install Dependencies
+Client
+npm install
+Server
+npm install
+
+
+
+Developed by Moments Hub

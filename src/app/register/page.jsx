@@ -6,6 +6,7 @@ import { Button, Description, FieldError, Input, Label, TextField } from '@herou
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
+import toast from 'react-hot-toast';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 // import { toast } from 'react-toastify';
 
@@ -40,12 +41,12 @@ const RegisterPage = () => {
         });
         // console.log('Signup Failed:', { data, error });
         if (data) {
-            alert("Create account Successfullly")
+            toast.success("Create account Successfullly")
             router.push("/login");
         }
 
         if (error) {
-            alert('Signup Failed: ' + error.message);
+            toast.error('Signup Failed: ' + error.message);
             // toast.error('Signup Failed: ' + error.message)
         }
     }

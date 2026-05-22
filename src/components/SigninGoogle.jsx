@@ -1,5 +1,6 @@
 'use client'
 import { authClient } from '@/lib/auth-client';
+import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc'
 // import { toast } from 'react-toastify';
 
@@ -12,10 +13,10 @@ const SigninGoogle = () => {
 
         if(data){
             // toast.success('Login with google successfully.');
-            alert('Login with google successfully.');
+            toast.success('Login with google successfully.');
         }else{
             // toast.error('Login Faild.')
-            alert('Login Faild.');
+            toast.error('Login Faild..');
         }
     }
 

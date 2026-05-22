@@ -3,6 +3,7 @@ import { modifyBooking } from '@/lib/data'
 import { Button, Input, Label, Modal, Surface, TextField } from '@heroui/react'
 import { redirect } from 'next/navigation'
 import React from 'react'
+import toast from 'react-hot-toast'
 import { GrEdit } from 'react-icons/gr'
 
 const EditModal = ({booking}) => {
@@ -24,7 +25,7 @@ const EditModal = ({booking}) => {
         });
         const data = await res.json();
         if(data.modifiedCount > 0){
-            alert('Edit successfully..');
+            toast.success("Edit Successfully");
         }else{
             alert('something wrong..');
             redirect('/managemyfacilities')

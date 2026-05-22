@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { MdOutlineSportsSoccer } from "react-icons/md";
 import { useRouter } from 'next/navigation';
 import { FaCheck } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const router = useRouter();
@@ -50,7 +51,7 @@ const Navbar = () => {
 
     if (value === 'logout') {
       await signOut();
-      alert('Log out successfully');
+      toast.success("Logout Successful");
       router.push('/');
       return;
     }

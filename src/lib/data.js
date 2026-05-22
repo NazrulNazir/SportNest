@@ -78,6 +78,10 @@ export const bookingCancel = async (userId) => {
 
     if (data.deletedCount > 0) {
         revalidatePath('/mybookings');
+         return {
+            success: true,
+            message: 'Booking Cancel Successfully',
+        }
     }
 
     return data;
@@ -125,6 +129,10 @@ export const bookingDElete = async (bookingID) => {
 
     if (data.deletedCount > 0) {
         revalidatePath('/managemyfacilities');
+        return {
+            success: true,
+            message: 'Deleted Successfully',
+        }
     }
 
     return data;
@@ -141,7 +149,7 @@ export const getMybook = async (userId) => {
         `${BASE_URL}/booking/${userId}`,
         {
             cache: 'no-store',
-             headers: {
+            headers: {
                 authorization: `Bearer ${token}`
             }
         }

@@ -6,6 +6,7 @@ import { authClient } from '@/lib/auth-client';
 import { Button } from '@heroui/react';
 import Link from 'next/link'
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 // import { toast } from 'react-toastify';
 
@@ -28,12 +29,12 @@ const LogInPage = () => {
         console.log('get form data', {data, error});
 
         if (data) {
-            alert('Login successfully..')
+            toast.success('Login successfully..')
             // toast.success("Signin Sussessfully..");
         }
         if (error) {
             // toast.error(error.message);
-            alert(error.message);
+            toast.error(error.message);
         }
 
     }
