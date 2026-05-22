@@ -17,7 +17,7 @@ const AddFacilityPage = () => {
         // console.log(newFacilities);
 
         const facilitiesData = async () => {
-            const res = await fetch(`http://localhost:8000/allfacilities`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allfacilities`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

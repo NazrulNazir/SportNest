@@ -4,12 +4,12 @@ import { revalidatePath } from "next/cache";
 import { auth } from "./auth";
 import { headers } from "next/headers";
 
-const BASE_URL = 'http://localhost:8000';
+// const process.env.NEXT_PUBLIC_SERVER_URL = '${process.env.NEXT_PUBLIC_SERVER_URL}';
 
 // Featured Facilities
 export const getFeaturedFacilities = async () => {
 
-    const res = await fetch(`${BASE_URL}/FeaturedFacilities`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/FeaturedFacilities`, {
         cache: 'no-store'
     });
 
@@ -28,7 +28,7 @@ export const getAllFacilities = async (
 ) => {
 
     const res = await fetch(
-        `${BASE_URL}/allfacilities?search=${searchText}&sport=${sportType}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/allfacilities?search=${searchText}&sport=${sportType}`,
         {
             cache: 'no-store'
         }
@@ -48,7 +48,7 @@ export const allFacilitiesDetails = async (id) => {
         headers: await headers(),
     })
     console.log(token);
-    const res = await fetch(`${BASE_URL}/allfacilities/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allfacilities/${id}`, {
         cache: 'no-store',
         headers: {
             authorization: `Bearer ${token}`
@@ -67,7 +67,7 @@ export const allFacilitiesDetails = async (id) => {
 // Cancel Booking
 export const bookingCancel = async (userId) => {
 
-    const res = await fetch(`${BASE_URL}/booking/${userId}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${userId}`, {
         method: 'DELETE',
         headers: {
             'content-type': 'application/json',
@@ -95,7 +95,7 @@ export const getMybooking = async (email) => {
     })
 
     const res = await fetch(
-        `${BASE_URL}/manageFacilities/${email}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/manageFacilities/${email}`,
         {
             cache: 'no-store',
             headers: {
@@ -116,7 +116,7 @@ export const getMybooking = async (email) => {
 export const bookingDElete = async (bookingID) => {
 
     const res = await fetch(
-        `${BASE_URL}/manageFacilities/${bookingID}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/manageFacilities/${bookingID}`,
         {
             method: 'DELETE',
             headers: {
@@ -146,7 +146,7 @@ export const getMybook = async (userId) => {
     })
 
     const res = await fetch(
-        `${BASE_URL}/booking/${userId}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${userId}`,
         {
             cache: 'no-store',
             headers: {

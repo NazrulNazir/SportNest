@@ -16,7 +16,7 @@ const EditModal = ({booking}) => {
         // console.log(data);
         // await modifyBooking(id)
 
-        const res = await fetch(`http://localhost:8000/allfacilities/${booking._id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allfacilities/${booking._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type' : 'application/json'
