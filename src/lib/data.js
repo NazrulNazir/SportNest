@@ -1,6 +1,8 @@
 'use server'
 
 import { revalidatePath } from "next/cache";
+import { auth } from "./auth";
+import { headers } from "next/headers";
 
 const BASE_URL = 'http://localhost:8000';
 
@@ -40,11 +42,18 @@ export const getAllFacilities = async (
 };
 
 
-// Facility Details
+// Facility Details private
 export const allFacilitiesDetails = async (id) => {
-
+    const { token } = await auth.api.getToken({
+        headers: await headers(),
+    })
+    console.log(token);
     const res = await fetch(`${BASE_URL}/allfacilities/${id}`, {
-        cache: 'no-store'
+        cache: 'no-store',
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+
     });
 
     if (!res.ok) {
@@ -77,11 +86,17 @@ export const bookingCancel = async (userId) => {
 
 // My Facilities
 export const getMybooking = async (email) => {
+    const { token } = await auth.api.getToken({
+        headers: await headers(),
+    })
 
     const res = await fetch(
         `${BASE_URL}/manageFacilities/${email}`,
         {
-            cache: 'no-store'
+            cache: 'no-store',
+            headers: {
+                authorization: `Bearer ${token}`
+            }
         }
     );
 
@@ -118,11 +133,17 @@ export const bookingDElete = async (bookingID) => {
 
 // My Bookings
 export const getMybook = async (userId) => {
+    const { token } = await auth.api.getToken({
+        headers: await headers(),
+    })
 
     const res = await fetch(
         `${BASE_URL}/booking/${userId}`,
         {
-            cache: 'no-store'
+            cache: 'no-store',
+             headers: {
+                authorization: `Bearer ${token}`
+            }
         }
     );
 
@@ -133,35 +154,3 @@ export const getMybook = async (userId) => {
     return res.json();
 };
 
-
-
-
-
-
-
-// 'use server'
-
-// import { revalidatePath } from "next/cache";
-
-// const BASE_URL = 'http://localhost:8000';
-
-// export const getFeaturedFacilities = async () => {
-//     const res = await fetch(`${BASE_URL}/FeaturedFacilities`);
-//     return res.json();
-// };
-
-// export const getAllFacilities = async (searchText = '', sportType = '') => {
-
-//     const url = `${BASE_URL}/allfacilities?search=${searchText}&sport=${sportType}`;
-
-//     const res = await fetch(url, {
-//         cache: 'no-store'
-//     });
-
-//     return res.json();
-// };
-
-// export const allFacilitiesDetails = async (id) => {
-//     const res = await fetch(`${BASE_URL}/allfacilities/${id}`);
-//     return res.json();
-// };

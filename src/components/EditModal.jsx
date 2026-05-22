@@ -1,6 +1,7 @@
 'use client'
 import { modifyBooking } from '@/lib/data'
 import { Button, Input, Label, Modal, Surface, TextField } from '@heroui/react'
+import { redirect } from 'next/navigation'
 import React from 'react'
 import { GrEdit } from 'react-icons/gr'
 
@@ -22,6 +23,12 @@ const EditModal = ({booking}) => {
             body: JSON.stringify(newData)
         });
         const data = await res.json();
+        if(data.modifiedCount > 0){
+            alert('Edit successfully..');
+        }else{
+            alert('something wrong..');
+            redirect('/managemyfacilities')
+        }
         console.log('After edit data..',data)
         
 
