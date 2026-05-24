@@ -1,4 +1,4 @@
-SportNest - Sports Facility Booking Management System
+## SportNest - Sports Facility Booking Management System
 🏆 Project Overview
 
 SportNest is a full-stack sports facility booking platform built with the MERN Stack and Next.js.
@@ -6,11 +6,12 @@ Users can explore different sports facilities such as tennis courts, football tu
 
 The platform provides a modern and responsive user experience with secure authentication, facility management, and booking management features.
 
-🌐 Live Website
+## 🌐 Live Website
 
-🚀 Project Link: https://your-live-link.vercel.app
+🚀 Project Link: https://sport-nest-phi.vercel.app
 
-✨ Main Features
+## ✨ Main Features
+
 🔐 Authentication System (Email/Password + Google Login)
 🏟 Browse All Sports Facilities
 📅 Book Facilities by Date & Time
@@ -29,7 +30,7 @@ The platform provides a modern and responsive user experience with secure authen
 🧰 Technologies Used
 
 
-**Frontend
+## Frontend
 Next.js
 React.js
 Tailwind CSS
@@ -39,7 +40,7 @@ React Hot Toast
 React Icons
 Next Auth / Better Auth
 
-**Backend
+## Backend
 Node.js
 Express.js
 MongoDB
@@ -68,7 +69,7 @@ dotenv
 jsonwebtoken
 cookie-parser
 
-🔐 Authentication Features
+## 🔐 Authentication Features
 User Registration
 User Login
 Google Authentication
@@ -77,21 +78,23 @@ HTTPOnly Cookie Storage
 Protected Private Routes
 Middleware Route Protection
 
-🏟 Facility Features
+## 🏟 Facility Features
+
 Add New Facility
 Update Facility
 Delete Facility
 View Facility Details
 Dynamic Featured Facilities Section
 
-📅 Booking Features
+## 📅 Booking Features
+
 Book Sports Facilities
 View My Bookings
 Cancel Booking
 Booking Status Management
 📱 Responsive Design
 
-The website is fully responsive for:
+## The website is fully responsive for:
 
 Mobile Devices
 Tablets
@@ -118,11 +121,12 @@ total_price
 status
 
 
-🚀 Installation & Setup
+## 🚀 Installation & Setup
+
 Clone Client Repository
-git clone https://github.com/your-username/client-side-repo.git
+git clone https://github.com/NazrulNazir/SportNest
 Clone Server Repository
-git clone https://github.com/your-username/server-side-repo.git
+git clone https://github.com/NazrulNazir/SportNest-server
 Install Dependencies
 Client
 npm install
@@ -131,4 +135,4 @@ npm install
 
 
 
-Developed by Moments Hub
+## Developed by Nazrul Nazir
